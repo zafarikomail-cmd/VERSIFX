@@ -41,10 +41,10 @@
   --bg-inverse: var(--color-navy);
   --text-primary: var(--color-navy);
   --text-inverse: var(--color-ivory);
-  --text-muted: #5B6270;
-  --text-muted-inverse: #A7ADBC;
-  --border-soft: rgba(16, 26, 43, 0.22);
-  --border-inverse: rgba(247, 244, 236, 0.28);
+  --text-muted: #4A5160;
+  --text-muted-inverse: #C2C7D4;
+  --border-soft: rgba(16, 26, 43, 0.38);
+  --border-inverse: rgba(247, 244, 236, 0.42);
 
   /* ---- Typography ----
      A single serif family carries the whole page — display sizes for
