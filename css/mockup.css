@@ -24,6 +24,29 @@
   --arc-muted: #5B6864;
   --arc-font: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --arc-radius: 6px;
+
+  /* MAISON NOIR — fictional restaurant brand. Dark, upscale, serif
+     (reuses the site's own Cormorant Garamond so no extra font load
+     is needed) — deliberately different register from Arcstone. */
+  --mn-black: #1A1613;
+  --mn-black-soft: #241E19;
+  --mn-cream: #F3ECDD;
+  --mn-gold: #B08D57;
+  --mn-gold-soft: #C9AC7C;
+  --mn-muted: #B7A98E;
+  --mn-radius: 2px;
+
+  /* NORTHLINE — fictional home-services brand. Clean, light,
+     corporate sans — a third distinct register again. */
+  --nl-navy: #1B3A5C;
+  --nl-orange: #E07B39;
+  --nl-orange-soft: #EFA275;
+  --nl-gray: #F4F6F8;
+  --nl-panel: #E7ECF1;
+  --nl-ink: #1E2B36;
+  --nl-muted: #64707C;
+  --nl-font: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --nl-radius: 4px;
 }
 
 /* ---------------------------------------------------------
@@ -54,18 +77,33 @@ a.device-frame {
   background: rgba(247, 244, 236, 0.95);
 }
 
-.device-frame .arc {
+.device-frame .arc,
+.device-frame .mn,
+.device-frame .nl {
   flex: 1;
   display: flex;
   flex-direction: column;
   min-height: 0;
-  font-family: var(--arc-font);
-  color: var(--arc-ink);
-  background: var(--arc-cream);
 }
 
+/* Each brand mockup is its own container-query context, so every
+   clamp(...cqw...) below sizes against THIS box's own width — not the
+   browser viewport. That's what makes the same markup render correctly
+   whether it's a full-width hero on a project page or a small card
+   thumbnail in a 3-up grid. (Previously these used vw, which measures
+   the viewport, so a thumbnail read the same huge font size as a
+   full-page hero and overflowed its box — hence the clipped Dental
+   preview.) */
+.arc, .mn, .nl { container-type: inline-size; }
+
+.arc { font-family: var(--arc-font); color: var(--arc-ink); background: var(--arc-cream); }
+.mn { font-family: var(--font-display); color: var(--mn-cream); background: var(--mn-black); }
+.nl { font-family: var(--nl-font); color: var(--nl-ink); background: var(--nl-gray); }
+
 /* Browser chrome (top bar with dots + url) */
-.browser-frame .arc { position: relative; }
+.browser-frame .arc,
+.browser-frame .mn,
+.browser-frame .nl { position: relative; }
 
 .browser-chrome {
   flex: none;
@@ -123,14 +161,14 @@ a.device-frame {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.9rem clamp(0.9rem, 3vw, 1.75rem);
+  padding: 0.9rem clamp(0.9rem, 3cqw, 1.75rem);
   border-bottom: 1px solid rgba(27, 37, 35, 0.08);
   background: var(--arc-cream);
 }
 
 .arc-logo {
   font-weight: 700;
-  font-size: clamp(0.78rem, 1.6vw, 1rem);
+  font-size: clamp(0.78rem, 1.6cqw, 1rem);
   letter-spacing: 0.01em;
   color: var(--arc-teal);
   white-space: nowrap;
@@ -144,11 +182,11 @@ a.device-frame {
 .arc-nav-links {
   display: flex;
   align-items: center;
-  gap: clamp(0.75rem, 2vw, 1.5rem);
+  gap: clamp(0.75rem, 2cqw, 1.5rem);
 }
 
 .arc-nav-links span {
-  font-size: clamp(0.6rem, 1.1vw, 0.78rem);
+  font-size: clamp(0.6rem, 1.1cqw, 0.78rem);
   color: var(--arc-muted);
   font-weight: 500;
 }
@@ -157,7 +195,7 @@ a.device-frame {
   flex: none;
   display: inline-flex;
   align-items: center;
-  font-size: clamp(0.6rem, 1.1vw, 0.78rem);
+  font-size: clamp(0.6rem, 1.1cqw, 0.78rem);
   font-weight: 600;
   color: #fff;
   background: var(--arc-teal);
@@ -176,8 +214,8 @@ a.device-frame {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   align-items: center;
-  gap: clamp(0.75rem, 3vw, 2rem);
-  padding: clamp(1rem, 4vw, 2.5rem) clamp(0.9rem, 3vw, 1.75rem);
+  gap: clamp(0.75rem, 3cqw, 2rem);
+  padding: clamp(1rem, 4cqw, 2.5rem) clamp(0.9rem, 3cqw, 1.75rem);
   background:
     radial-gradient(120% 140% at 100% 0%, rgba(198, 122, 86, 0.08), transparent 60%),
     var(--arc-cream);
@@ -185,7 +223,7 @@ a.device-frame {
 
 .arc-hero-eyebrow {
   display: block;
-  font-size: clamp(0.6rem, 1.1vw, 0.75rem);
+  font-size: clamp(0.6rem, 1.1cqw, 0.75rem);
   font-weight: 700;
   letter-spacing: 0.09em;
   text-transform: uppercase;
@@ -197,14 +235,14 @@ a.device-frame {
   font-family: var(--arc-font);
   font-weight: 700;
   line-height: 1.15;
-  font-size: clamp(1rem, 3.2vw, 2.1rem);
+  font-size: clamp(1rem, 3.2cqw, 2.1rem);
   color: var(--arc-teal);
   letter-spacing: -0.01em;
 }
 
 .arc-hero p {
   margin-top: 0.75em;
-  font-size: clamp(0.62rem, 1.3vw, 0.92rem);
+  font-size: clamp(0.62rem, 1.3cqw, 0.92rem);
   line-height: 1.5;
   color: var(--arc-muted);
   max-width: 34ch;
@@ -214,7 +252,7 @@ a.device-frame {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  margin-top: clamp(0.75rem, 2vw, 1.5rem);
+  margin-top: clamp(0.75rem, 2cqw, 1.5rem);
   flex-wrap: wrap;
 }
 
@@ -222,7 +260,7 @@ a.device-frame {
   display: inline-flex;
   align-items: center;
   font-family: var(--arc-font);
-  font-size: clamp(0.6rem, 1.1vw, 0.8rem);
+  font-size: clamp(0.6rem, 1.1cqw, 0.8rem);
   font-weight: 600;
   border-radius: var(--arc-radius);
   padding: 0.65em 1.15em;
@@ -255,6 +293,275 @@ a.device-frame {
 }
 
 /* ---------------------------------------------------------
+   MAISON NOIR (restaurant concept)
+   --------------------------------------------------------- */
+
+.mn-nav {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem clamp(0.9rem, 3cqw, 1.75rem);
+  border-bottom: 1px solid rgba(243, 236, 221, 0.1);
+  background: var(--mn-black);
+}
+
+.mn-logo {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  font-size: clamp(0.85rem, 1.7cqw, 1.1rem);
+  color: var(--mn-cream);
+  white-space: nowrap;
+}
+
+.mn-logo em { font-style: italic; color: var(--mn-gold); }
+
+.mn-nav-links {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 2cqw, 1.5rem);
+}
+
+.mn-nav-links span {
+  font-size: clamp(0.6rem, 1.1cqw, 0.78rem);
+  color: var(--mn-muted);
+  font-weight: 500;
+}
+
+.mn-nav-cta {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  font-size: clamp(0.6rem, 1.1cqw, 0.78rem);
+  font-weight: 600;
+  color: var(--mn-black);
+  background: var(--mn-gold);
+  border-radius: var(--mn-radius);
+  padding: 0.4em 0.9em;
+  white-space: nowrap;
+}
+
+.mn-hero {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: clamp(0.75rem, 3cqw, 2rem);
+  padding: clamp(1rem, 4cqw, 2.5rem) clamp(0.9rem, 3cqw, 1.75rem);
+  background:
+    radial-gradient(120% 140% at 100% 0%, rgba(176, 141, 87, 0.1), transparent 60%),
+    var(--mn-black);
+}
+
+.mn-hero-eyebrow {
+  display: block;
+  font-size: clamp(0.6rem, 1.1cqw, 0.75rem);
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--mn-gold);
+  margin-bottom: 0.6em;
+}
+
+.mn-hero h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.15;
+  font-size: clamp(1rem, 3.2cqw, 2.1rem);
+  color: var(--mn-cream);
+  letter-spacing: -0.005em;
+}
+
+.mn-hero p {
+  margin-top: 0.75em;
+  font-family: var(--arc-font);
+  font-size: clamp(0.62rem, 1.3cqw, 0.92rem);
+  line-height: 1.5;
+  color: var(--mn-muted);
+  max-width: 34ch;
+}
+
+.mn-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: clamp(0.75rem, 2cqw, 1.5rem);
+  flex-wrap: wrap;
+}
+
+.mn-btn {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--arc-font);
+  font-size: clamp(0.6rem, 1.1cqw, 0.8rem);
+  font-weight: 600;
+  border-radius: var(--mn-radius);
+  padding: 0.65em 1.15em;
+  white-space: nowrap;
+}
+
+.mn-btn--fill { background: var(--mn-gold); color: var(--mn-black); }
+.mn-btn--line { border: 1px solid var(--mn-gold-soft); color: var(--mn-cream); }
+
+.mn-hero-art {
+  align-self: stretch;
+  min-height: 60px;
+  border-radius: var(--mn-radius);
+  background:
+    radial-gradient(60% 60% at 30% 30%, rgba(176, 141, 87, 0.45), transparent 65%),
+    radial-gradient(70% 70% at 75% 70%, rgba(36, 30, 25, 0.9), transparent 70%),
+    linear-gradient(160deg, var(--mn-black-soft), var(--mn-black));
+  position: relative;
+  overflow: hidden;
+}
+
+.mn-hero-art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(243, 236, 221, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(243, 236, 221, 0.06) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* ---------------------------------------------------------
+   NORTHLINE (local business / home services concept)
+   --------------------------------------------------------- */
+
+.nl-nav {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem clamp(0.9rem, 3cqw, 1.75rem);
+  border-bottom: 1px solid rgba(30, 43, 54, 0.08);
+  background: #fff;
+}
+
+.nl-logo {
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  font-size: clamp(0.78rem, 1.6cqw, 1rem);
+  color: var(--nl-navy);
+  white-space: nowrap;
+}
+
+.nl-logo em { font-style: normal; color: var(--nl-orange); }
+
+.nl-nav-links {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 2cqw, 1.5rem);
+}
+
+.nl-nav-links span {
+  font-size: clamp(0.6rem, 1.1cqw, 0.78rem);
+  color: var(--nl-muted);
+  font-weight: 500;
+}
+
+.nl-nav-cta {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  font-size: clamp(0.6rem, 1.1cqw, 0.78rem);
+  font-weight: 700;
+  color: #fff;
+  background: var(--nl-orange);
+  border-radius: var(--nl-radius);
+  padding: 0.4em 0.9em;
+  white-space: nowrap;
+}
+
+.nl-hero {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: clamp(0.75rem, 3cqw, 2rem);
+  padding: clamp(1rem, 4cqw, 2.5rem) clamp(0.9rem, 3cqw, 1.75rem);
+  background:
+    radial-gradient(120% 140% at 100% 0%, rgba(224, 123, 57, 0.08), transparent 60%),
+    var(--nl-gray);
+}
+
+.nl-hero-eyebrow {
+  display: block;
+  font-size: clamp(0.6rem, 1.1cqw, 0.75rem);
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--nl-orange);
+  margin-bottom: 0.6em;
+}
+
+.nl-hero h3 {
+  font-weight: 800;
+  line-height: 1.15;
+  font-size: clamp(1rem, 3.2cqw, 2.1rem);
+  color: var(--nl-navy);
+  letter-spacing: -0.01em;
+}
+
+.nl-hero p {
+  margin-top: 0.75em;
+  font-size: clamp(0.62rem, 1.3cqw, 0.92rem);
+  line-height: 1.5;
+  color: var(--nl-muted);
+  max-width: 34ch;
+}
+
+.nl-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: clamp(0.75rem, 2cqw, 1.5rem);
+  flex-wrap: wrap;
+}
+
+.nl-btn {
+  display: inline-flex;
+  align-items: center;
+  font-size: clamp(0.6rem, 1.1cqw, 0.8rem);
+  font-weight: 700;
+  border-radius: var(--nl-radius);
+  padding: 0.65em 1.15em;
+  white-space: nowrap;
+}
+
+.nl-btn--fill { background: var(--nl-orange); color: #fff; }
+.nl-btn--line { border: 1px solid var(--nl-navy); color: var(--nl-navy); }
+
+.nl-hero-art {
+  align-self: stretch;
+  min-height: 60px;
+  border-radius: var(--nl-radius);
+  background:
+    radial-gradient(60% 60% at 30% 30%, rgba(224, 123, 57, 0.35), transparent 65%),
+    radial-gradient(70% 70% at 75% 70%, rgba(27, 58, 92, 0.9), transparent 70%),
+    linear-gradient(160deg, var(--nl-navy), #12283f);
+  position: relative;
+  overflow: hidden;
+}
+
+.nl-hero-art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(244, 246, 248, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(244, 246, 248, 0.08) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* ---------------------------------------------------------
    ARC SERVICES
    --------------------------------------------------------- */
 
@@ -268,7 +575,7 @@ a.device-frame {
 
 .arc-service {
   background: var(--arc-cream);
-  padding: clamp(1.1rem, 3vw, 1.75rem);
+  padding: clamp(1.1rem, 3cqw, 1.75rem);
 }
 
 .arc-service-mark {
@@ -301,9 +608,9 @@ a.device-frame {
 .arc-about {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
-  gap: clamp(1.25rem, 3vw, 2.5rem);
+  gap: clamp(1.25rem, 3cqw, 2.5rem);
   align-items: center;
-  padding: clamp(1.5rem, 4vw, 2.75rem);
+  padding: clamp(1.5rem, 4cqw, 2.75rem);
   background: var(--arc-sand);
 }
 
@@ -327,7 +634,7 @@ a.device-frame {
 
 .arc-about h4 {
   font-family: var(--arc-font);
-  font-size: clamp(1.05rem, 2.2vw, 1.4rem);
+  font-size: clamp(1.05rem, 2.2cqw, 1.4rem);
   font-weight: 700;
   color: var(--arc-teal);
   line-height: 1.25;
@@ -348,8 +655,8 @@ a.device-frame {
 .arc-contact {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
-  gap: clamp(1.25rem, 3vw, 2.5rem);
-  padding: clamp(1.5rem, 4vw, 2.75rem);
+  gap: clamp(1.25rem, 3cqw, 2.5rem);
+  padding: clamp(1.5rem, 4cqw, 2.75rem);
   background: var(--arc-cream);
 }
 
