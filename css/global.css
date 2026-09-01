@@ -43,8 +43,8 @@
   --text-inverse: var(--color-ivory);
   --text-muted: #5B6270;
   --text-muted-inverse: #A7ADBC;
-  --border-soft: rgba(16, 26, 43, 0.12);
-  --border-inverse: rgba(247, 244, 236, 0.16);
+  --border-soft: rgba(16, 26, 43, 0.22);
+  --border-inverse: rgba(247, 244, 236, 0.28);
 
   /* ---- Typography ----
      A single serif family carries the whole page — display sizes for
@@ -84,7 +84,7 @@
      edges read as print/engraving. */
   --radius-sm: 0px;
   --radius-md: 0px;
-  --border-thin: 1px solid var(--border-soft);
+  --border-thin: 1.5px solid var(--border-soft);
 
   /* ---- Motion ---- */
   --ease-standard: cubic-bezier(0.22, 0.61, 0.36, 1);
