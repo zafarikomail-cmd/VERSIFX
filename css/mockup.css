@@ -672,43 +672,6 @@ a.device-frame {
   color: var(--text-muted-inverse);
 }
 
-/* ---------------------------------------------------------
-   SIGNATURE METHOD VISUAL
-   Applies to the existing .method-steps markup (no HTML change
-   required) wherever the process should read as a headline
-   strategic device rather than five plain rows.
-   --------------------------------------------------------- */
-
-.method-steps--signature {
-  padding-left: 4.75rem;
-}
-
-.method-steps--signature .method-step {
-  display: block;
-  position: relative;
-  padding-block: 1.85rem;
-}
-
-.method-steps--signature .method-step-num {
-  position: absolute;
-  left: -4.75rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.3rem;
-  border: 1px solid var(--color-gold);
-  color: var(--color-gold);
-}
-
-.method-steps--signature .method-step-title {
-  font-size: var(--fs-lg);
-  margin-bottom: 0.4rem;
-}
-
-.method-steps--signature .method-step-desc {
-  max-width: 50ch;
-}
+/* Signature method visual (.method-steps--signature) now lives in
+   components.css so it's available on every page, not only the
+   pages that load this mockup stylesheet. */
