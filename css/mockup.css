@@ -1,0 +1,714 @@
+/* =========================================================
+   VERSIFX — CONCEPT MOCKUP SYSTEM
+   Powers the "Work" portfolio previews and the Dental Clinic
+   Digital Transformation concept project.
+
+   Everything here is built from real HTML/CSS — not screenshots
+   — so it renders crisply at any size and needs no image assets.
+
+   The fictional brand shown (ARCSTONE DENTAL) intentionally uses
+   its own small design system (--arc-* tokens, a sans-serif
+   typeface) rather than VERSIFX's own navy/gold/serif identity,
+   to demonstrate design range. It is always paired with a
+   "Concept Project" badge and never presented as a real client.
+   ========================================================= */
+
+:root {
+  --arc-teal: #21403C;
+  --arc-teal-soft: #2E534D;
+  --arc-cream: #F8F4EC;
+  --arc-sand: #ECE3D2;
+  --arc-coral: #C67A56;
+  --arc-coral-soft: #DDA487;
+  --arc-ink: #1B2523;
+  --arc-muted: #5B6864;
+  --arc-font: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --arc-radius: 6px;
+}
+
+/* ---------------------------------------------------------
+   DEVICE FRAME (shared shell for card previews + hero visual)
+   --------------------------------------------------------- */
+
+.device-frame {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  border: var(--border-thin);
+  background: var(--arc-cream);
+  display: flex;
+  flex-direction: column;
+}
+
+a.device-frame {
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+}
+
+.device-frame .badge--concept {
+  position: absolute;
+  z-index: 2;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  background: rgba(247, 244, 236, 0.95);
+}
+
+.device-frame .arc {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  font-family: var(--arc-font);
+  color: var(--arc-ink);
+  background: var(--arc-cream);
+}
+
+/* Browser chrome (top bar with dots + url) */
+.browser-frame .arc { position: relative; }
+
+.browser-chrome {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 30px;
+  padding-inline: 0.85rem;
+  background: var(--arc-sand);
+  border-bottom: 1px solid rgba(27, 37, 35, 0.08);
+}
+
+.browser-dots {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex: none;
+}
+
+.browser-dots span {
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(27, 37, 35, 0.18);
+}
+
+.browser-url {
+  flex: 1;
+  text-align: center;
+  font-size: 0.65rem;
+  letter-spacing: 0.02em;
+  color: var(--arc-muted);
+  background: rgba(255, 255, 255, 0.65);
+  border-radius: 3px;
+  padding: 3px 10px;
+  margin-right: 34px; /* optically re-centers the pill against the dots */
+}
+
+.browser-body {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------------------------------------------------------
+   ARC NAV
+   --------------------------------------------------------- */
+
+.arc-nav {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem clamp(0.9rem, 3vw, 1.75rem);
+  border-bottom: 1px solid rgba(27, 37, 35, 0.08);
+  background: var(--arc-cream);
+}
+
+.arc-logo {
+  font-weight: 700;
+  font-size: clamp(0.78rem, 1.6vw, 1rem);
+  letter-spacing: 0.01em;
+  color: var(--arc-teal);
+  white-space: nowrap;
+}
+
+.arc-logo em {
+  font-style: normal;
+  color: var(--arc-coral);
+}
+
+.arc-nav-links {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+.arc-nav-links span {
+  font-size: clamp(0.6rem, 1.1vw, 0.78rem);
+  color: var(--arc-muted);
+  font-weight: 500;
+}
+
+.arc-nav-cta {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  font-size: clamp(0.6rem, 1.1vw, 0.78rem);
+  font-weight: 600;
+  color: #fff;
+  background: var(--arc-teal);
+  border-radius: var(--arc-radius);
+  padding: 0.4em 0.9em;
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------
+   ARC HERO
+   --------------------------------------------------------- */
+
+.arc-hero {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: clamp(0.75rem, 3vw, 2rem);
+  padding: clamp(1rem, 4vw, 2.5rem) clamp(0.9rem, 3vw, 1.75rem);
+  background:
+    radial-gradient(120% 140% at 100% 0%, rgba(198, 122, 86, 0.08), transparent 60%),
+    var(--arc-cream);
+}
+
+.arc-hero-eyebrow {
+  display: block;
+  font-size: clamp(0.6rem, 1.1vw, 0.75rem);
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--arc-coral);
+  margin-bottom: 0.6em;
+}
+
+.arc-hero h3 {
+  font-family: var(--arc-font);
+  font-weight: 700;
+  line-height: 1.15;
+  font-size: clamp(1rem, 3.2vw, 2.1rem);
+  color: var(--arc-teal);
+  letter-spacing: -0.01em;
+}
+
+.arc-hero p {
+  margin-top: 0.75em;
+  font-size: clamp(0.62rem, 1.3vw, 0.92rem);
+  line-height: 1.5;
+  color: var(--arc-muted);
+  max-width: 34ch;
+}
+
+.arc-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: clamp(0.75rem, 2vw, 1.5rem);
+  flex-wrap: wrap;
+}
+
+.arc-btn {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--arc-font);
+  font-size: clamp(0.6rem, 1.1vw, 0.8rem);
+  font-weight: 600;
+  border-radius: var(--arc-radius);
+  padding: 0.65em 1.15em;
+  white-space: nowrap;
+}
+
+.arc-btn--fill { background: var(--arc-coral); color: #fff; }
+.arc-btn--line { border: 1px solid var(--arc-teal); color: var(--arc-teal); }
+
+.arc-hero-art {
+  align-self: stretch;
+  min-height: 60px;
+  border-radius: var(--arc-radius);
+  background:
+    radial-gradient(60% 60% at 30% 30%, rgba(198, 122, 86, 0.55), transparent 65%),
+    radial-gradient(70% 70% at 75% 70%, rgba(33, 64, 60, 0.85), transparent 70%),
+    linear-gradient(160deg, var(--arc-teal-soft), var(--arc-teal));
+  position: relative;
+  overflow: hidden;
+}
+
+.arc-hero-art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(247, 244, 236, 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(247, 244, 236, 0.09) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* ---------------------------------------------------------
+   ARC SERVICES
+   --------------------------------------------------------- */
+
+.arc-service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(27, 37, 35, 0.08);
+  border-top: 1px solid rgba(27, 37, 35, 0.08);
+}
+
+.arc-service {
+  background: var(--arc-cream);
+  padding: clamp(1.1rem, 3vw, 1.75rem);
+}
+
+.arc-service-mark {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(198, 122, 86, 0.14);
+  border: 1px solid rgba(198, 122, 86, 0.4);
+  margin-bottom: 0.9rem;
+}
+
+.arc-service h4 {
+  font-family: var(--arc-font);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--arc-teal);
+}
+
+.arc-service p {
+  margin-top: 0.4rem;
+  font-size: 0.82rem;
+  color: var(--arc-muted);
+  line-height: 1.5;
+}
+
+/* ---------------------------------------------------------
+   ARC ABOUT
+   --------------------------------------------------------- */
+
+.arc-about {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  align-items: center;
+  padding: clamp(1.5rem, 4vw, 2.75rem);
+  background: var(--arc-sand);
+}
+
+.arc-about-art {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--arc-radius);
+  background:
+    radial-gradient(65% 65% at 70% 25%, rgba(198, 122, 86, 0.4), transparent 70%),
+    linear-gradient(150deg, var(--arc-teal), var(--arc-teal-soft));
+}
+
+.arc-about-eyebrow {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--arc-coral);
+  margin-bottom: 0.6em;
+}
+
+.arc-about h4 {
+  font-family: var(--arc-font);
+  font-size: clamp(1.05rem, 2.2vw, 1.4rem);
+  font-weight: 700;
+  color: var(--arc-teal);
+  line-height: 1.25;
+}
+
+.arc-about p {
+  margin-top: 0.75rem;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--arc-muted);
+  max-width: 42ch;
+}
+
+/* ---------------------------------------------------------
+   ARC CONTACT / BOOKING
+   --------------------------------------------------------- */
+
+.arc-contact {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  padding: clamp(1.5rem, 4vw, 2.75rem);
+  background: var(--arc-cream);
+}
+
+.arc-field {
+  margin-bottom: 0.9rem;
+}
+
+.arc-field-label {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--arc-muted);
+  margin-bottom: 0.4rem;
+}
+
+.arc-field-input {
+  height: 2.4rem;
+  border-radius: var(--arc-radius);
+  border: 1px solid rgba(27, 37, 35, 0.14);
+  background: #fff;
+}
+
+.arc-field-input--textarea { height: 3.6rem; }
+
+.arc-contact-side {
+  border-radius: var(--arc-radius);
+  background: var(--arc-sand);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.arc-contact-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: 0.82rem;
+  color: var(--arc-teal);
+}
+
+.arc-contact-row-mark {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  margin-top: 0.4em;
+  border-radius: 50%;
+  background: var(--arc-coral);
+}
+
+.arc-contact-map {
+  margin-top: 0.25rem;
+  border-radius: var(--arc-radius);
+  aspect-ratio: 16 / 9;
+  background:
+    linear-gradient(rgba(27, 37, 35, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(27, 37, 35, 0.07) 1px, transparent 1px),
+    var(--arc-teal-soft);
+  background-size: 14px 14px, 14px 14px, auto;
+  position: relative;
+}
+
+.arc-contact-map::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50% 50% 50% 0;
+  transform: translate(-50%, -100%) rotate(-45deg);
+  background: var(--arc-coral);
+}
+
+/* ---------------------------------------------------------
+   PHONE FRAME (mobile experience mockup)
+   --------------------------------------------------------- */
+
+.phone-frame {
+  width: min(280px, 78vw);
+  margin-inline: auto;
+  border: 8px solid var(--color-navy);
+  border-radius: 34px;
+  overflow: hidden;
+  background: var(--color-navy);
+  box-shadow: 0 30px 60px -20px rgba(16, 26, 43, 0.35);
+  position: relative;
+}
+
+.phone-frame::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 20px;
+  background: var(--color-navy);
+  border-radius: 0 0 12px 12px;
+  z-index: 2;
+}
+
+.phone-frame .arc {
+  aspect-ratio: 9 / 18.5;
+  border-radius: 26px;
+  overflow: hidden;
+}
+
+.phone-frame .arc-nav {
+  padding-top: 1.6rem;
+  flex-wrap: wrap;
+}
+
+.phone-frame .arc-nav-links { display: none; }
+
+.phone-frame .arc-hero {
+  grid-template-columns: 1fr;
+  text-align: left;
+}
+
+.phone-frame .arc-hero-art { order: -1; min-height: 110px; }
+
+.phone-frame .arc-hero-actions { flex-direction: column; align-items: stretch; }
+.phone-frame .arc-btn { justify-content: center; }
+
+/* ---------------------------------------------------------
+   MINI MOCKUP TILES (Services / About / Book, in "The Solution")
+   --------------------------------------------------------- */
+
+.mockup-tile {
+  border: var(--border-thin);
+  overflow: hidden;
+  background: var(--arc-cream);
+}
+
+.mockup-tile-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.9rem;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: var(--color-ivory);
+  border-bottom: var(--border-thin);
+}
+
+.mockup-tile .arc-service-grid,
+.mockup-tile .arc-about,
+.mockup-tile .arc-contact {
+  transform: scale(1);
+}
+
+/* Compact scale so 3-across tiles keep proportion on desktop */
+.mockup-tile .arc-service-grid { grid-template-columns: 1fr; }
+.mockup-tile .arc-service { padding: 1.1rem 1.25rem; }
+.mockup-tile .arc-about,
+.mockup-tile .arc-contact { grid-template-columns: 1fr; padding: 1.25rem; }
+.mockup-tile .arc-about-art { aspect-ratio: 16/9; }
+
+/* ---------------------------------------------------------
+   DIGITAL PRESENCE / SOCIAL CONCEPT
+   --------------------------------------------------------- */
+
+.social-mock {
+  border: var(--border-thin);
+  background: var(--arc-cream);
+  overflow: hidden;
+}
+
+.social-mock-head {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid rgba(27, 37, 35, 0.08);
+}
+
+.social-mock-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(150deg, var(--arc-coral), var(--arc-teal));
+  flex: none;
+}
+
+.social-mock-handle {
+  font-family: var(--arc-font);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--arc-teal);
+}
+
+.social-mock-sub {
+  font-family: var(--arc-font);
+  font-size: 0.68rem;
+  color: var(--arc-muted);
+}
+
+.social-mock-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+
+.social-mock-post {
+  aspect-ratio: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.social-mock-post::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(247, 244, 236, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(247, 244, 236, 0.07) 1px, transparent 1px);
+  background-size: 12px 12px;
+}
+
+.social-mock-post:nth-child(1) { background: linear-gradient(160deg, var(--arc-teal), var(--arc-teal-soft)); }
+.social-mock-post:nth-child(2) { background: linear-gradient(160deg, var(--arc-coral-soft), var(--arc-coral)); }
+.social-mock-post:nth-child(3) { background: linear-gradient(160deg, var(--arc-sand), var(--arc-teal-soft)); }
+.social-mock-post:nth-child(4) { background: linear-gradient(200deg, var(--arc-coral), var(--arc-teal)); }
+.social-mock-post:nth-child(5) { background: linear-gradient(200deg, var(--arc-teal-soft), var(--arc-sand)); }
+.social-mock-post:nth-child(6) { background: linear-gradient(200deg, var(--arc-teal), var(--arc-coral-soft)); }
+
+/* ---------------------------------------------------------
+   CHALLENGE GRID (project detail — "The Challenge")
+   --------------------------------------------------------- */
+
+.challenge-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border-top: var(--border-thin);
+  border-left: var(--border-thin);
+}
+
+.challenge-item {
+  padding: var(--space-sm) var(--space-md);
+  border-right: var(--border-thin);
+  border-bottom: var(--border-thin);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.challenge-item-mark {
+  flex: none;
+  width: 9px;
+  height: 9px;
+  margin-top: 0.5em;
+  border: 1.5px solid var(--color-gold-ink);
+  transform: rotate(45deg);
+}
+
+.challenge-item p {
+  font-size: var(--fs-body);
+  line-height: 1.5;
+}
+
+/* ---------------------------------------------------------
+   CUSTOMER JOURNEY STRIP
+   --------------------------------------------------------- */
+
+.journey-strip {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-sm);
+}
+
+.journey-step {
+  position: relative;
+  text-align: center;
+  padding-top: var(--space-lg);
+}
+
+.journey-step::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: -50%;
+  width: 100%;
+  height: 1px;
+  background: var(--border-inverse);
+}
+
+.journey-step:first-child::before { display: none; }
+
+.journey-step-num {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  color: var(--color-navy);
+  background: var(--color-gold);
+  border-radius: 50%;
+}
+
+.journey-step-label {
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+}
+
+.journey-step-desc {
+  margin-top: 0.35rem;
+  font-size: var(--fs-xs);
+  color: var(--text-muted-inverse);
+}
+
+/* ---------------------------------------------------------
+   SIGNATURE METHOD VISUAL
+   Applies to the existing .method-steps markup (no HTML change
+   required) wherever the process should read as a headline
+   strategic device rather than five plain rows.
+   --------------------------------------------------------- */
+
+.method-steps--signature {
+  padding-left: 4.75rem;
+}
+
+.method-steps--signature .method-step {
+  display: block;
+  position: relative;
+  padding-block: 1.85rem;
+}
+
+.method-steps--signature .method-step-num {
+  position: absolute;
+  left: -4.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold);
+}
+
+.method-steps--signature .method-step-title {
+  font-size: var(--fs-lg);
+  margin-bottom: 0.4rem;
+}
+
+.method-steps--signature .method-step-desc {
+  max-width: 50ch;
+}
