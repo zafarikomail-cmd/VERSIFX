@@ -266,6 +266,38 @@
   background: rgba(183, 154, 91, 0.08);
 }
 
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-ui);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.back-link:hover { color: var(--color-gold-ink); }
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--fs-sm);
+  padding: 0.55rem 1rem;
+  border: var(--border-thin);
+  color: var(--text-primary);
+}
+
+.section--dark .tag { border-color: var(--border-inverse); color: var(--text-inverse); }
+
 /* ---------------------------------------------------------
    CARDS
    --------------------------------------------------------- */
