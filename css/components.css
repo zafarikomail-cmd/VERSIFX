@@ -575,3 +575,45 @@
   border: 1px solid var(--color-gold);
   transform: rotate(45deg);
 }
+/* ---------------------------------------------------------
+   FAQ (AEO-friendly, native <details>/<summary>, no JS)
+   --------------------------------------------------------- */
+
+.faq-list {
+  border-top: var(--border-thin);
+}
+
+.faq-item {
+  border-bottom: var(--border-thin);
+  padding-block: var(--space-sm);
+}
+
+.faq-item summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+
+.faq-item summary::-webkit-details-marker { display: none; }
+
+.faq-item summary::after {
+  content: "+";
+  flex-shrink: 0;
+  font-family: var(--font-ui);
+  font-weight: 400;
+  font-size: 1.4rem;
+  color: var(--color-gold-ink);
+  transition: transform var(--duration-fast) var(--ease-standard);
+}
+
+.faq-item[open] summary::after {
+  content: "−";
+}
+
+.faq-item summary:focus-visible {
+  outline: 2px solid var(--color-gold-ink);
+  outline-offset: 4px;
+}
