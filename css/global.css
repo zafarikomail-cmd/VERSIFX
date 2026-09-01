@@ -24,13 +24,16 @@
   --color-ivory: #F7F4EC;
   --color-charcoal: #252A31;
   --color-stone: #DDD8CC;
-  --color-gold: #B79A5B;
-  --color-gold-soft: #CBB483;
+  /* Antique / patina gold — deliberately duller and less saturated than a
+     bright metallic gold, so it reads as aged brass or foil-stamping
+     rather than a shiny accent. */
+  --color-gold: #A6874F;
+  --color-gold-soft: #C2A876;
   /* Deeper gold for text/icons/UI accents on light backgrounds — the base
-     --color-gold reads clearly on navy (6.5:1) but falls to ~2.5:1 on
-     ivory/stone, below WCAG AA. Use this any time gold sits on a light
-     section; --color-gold remains correct for dark sections. */
-  --color-gold-ink: #786335;
+     --color-gold reads clearly on navy but falls below WCAG AA on
+     ivory/stone. Use this any time gold sits on a light section;
+     --color-gold remains correct for dark sections. */
+  --color-gold-ink: #6E5A2F;
   --color-white: #FFFFFF;
 
   /* ---- Functional aliases ---- */
@@ -43,9 +46,13 @@
   --border-soft: rgba(16, 26, 43, 0.12);
   --border-inverse: rgba(247, 244, 236, 0.16);
 
-  /* ---- Typography ---- */
+  /* ---- Typography ----
+     A single serif family carries the whole page — display sizes for
+     headlines, text sizes (with small-caps for labels/nav) for UI and
+     body. No geometric sans; the letterhead should feel like one
+     considered typeface, not a "brand font + app font" split. */
   --font-display: "Cormorant Garamond", "Times New Roman", serif;
-  --font-ui: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-ui: "EB Garamond", "Cormorant Garamond", "Times New Roman", serif;
 
   /* ---- Type scale ---- */
   --fs-2xl: clamp(2.75rem, 2.1rem + 3vw, 5rem);
@@ -72,9 +79,11 @@
   --container-narrow: 760px;
   --container-pad: clamp(1.5rem, 4vw, 3.5rem);
 
-  /* ---- Radius & borders ---- */
-  --radius-sm: 2px;
-  --radius-md: 4px;
+  /* ---- Radius & borders ----
+     Sharp corners throughout — rounded corners read as software, square
+     edges read as print/engraving. */
+  --radius-sm: 0px;
+  --radius-md: 0px;
   --border-thin: 1px solid var(--border-soft);
 
   /* ---- Motion ---- */
@@ -185,10 +194,11 @@ h1 em, h2 em, h3 em, .font-display em {
 
 .eyebrow {
   font-family: var(--font-ui);
-  font-size: var(--fs-xs);
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  font-style: italic;
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  font-variant: small-caps;
+  letter-spacing: 0.08em;
   color: var(--color-gold-ink);
 }
 

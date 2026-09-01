@@ -47,9 +47,11 @@
 }
 
 .nav-links a {
-  font-size: var(--fs-sm);
+  font-family: var(--font-ui);
+  font-size: 1rem;
   font-weight: 500;
-  letter-spacing: 0.01em;
+  font-variant: small-caps;
+  letter-spacing: 0.04em;
   color: var(--text-primary);
   position: relative;
   padding-block: 0.3rem;
@@ -195,46 +197,45 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.9rem 1.6rem;
+  padding: 0.85rem 1.9rem;
+  font-family: var(--font-ui);
   font-size: var(--fs-sm);
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  font-weight: 500;
+  font-variant: small-caps;
+  letter-spacing: 0.06em;
   border-radius: var(--radius-sm);
   border: 1px solid transparent;
-  transition: transform var(--duration-fast) var(--ease-standard),
-              background var(--duration-fast) var(--ease-standard),
+  transition: background var(--duration-fast) var(--ease-standard),
               color var(--duration-fast) var(--ease-standard),
               border-color var(--duration-fast) var(--ease-standard);
   white-space: nowrap;
 }
 
-.btn:hover { transform: translateY(-1px); }
-
-.btn-arrow {
-  transition: transform var(--duration-fast) var(--ease-standard);
-}
-.btn:hover .btn-arrow { transform: translateX(3px); }
+/* No translate-on-hover, no arrow glyph — a quieter, letterpress-style
+   hover: the fill/border simply changes. .btn-arrow is kept as a no-op
+   class so any markup that still references it doesn't break. */
+.btn-arrow { display: none; }
 
 .btn-primary {
-  background: var(--color-navy);
-  color: var(--color-ivory);
-  border-color: var(--color-navy);
-}
-.btn-primary:hover { background: var(--color-navy-soft); }
-
-.btn-secondary {
   background: transparent;
   color: var(--color-navy);
   border-color: var(--color-navy);
 }
-.btn-secondary:hover { background: var(--color-navy); color: var(--color-ivory); }
+.btn-primary:hover { background: var(--color-navy); color: var(--color-ivory); }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-navy);
+  border-color: var(--border-soft);
+}
+.btn-secondary:hover { border-color: var(--color-navy); }
 
 .btn-on-dark {
-  background: var(--color-ivory);
-  color: var(--color-navy);
+  background: transparent;
+  color: var(--color-ivory);
   border-color: var(--color-ivory);
 }
-.btn-on-dark:hover { background: var(--color-gold-soft); border-color: var(--color-gold-soft); }
+.btn-on-dark:hover { background: var(--color-ivory); color: var(--color-navy); }
 
 .btn-ghost-on-dark {
   background: transparent;
