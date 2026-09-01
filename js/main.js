@@ -21,13 +21,17 @@
   /* ---------- Mobile menu ---------- */
   var toggle = document.querySelector(".nav-toggle");
   var menu = document.querySelector(".mobile-menu");
+  var backdrop = document.querySelector(".mobile-menu-backdrop");
   var closeBtn = document.querySelector(".mobile-menu-close");
 
   function openMenu() {
     if (!menu) return;
     menu.classList.add("is-open");
+    if (backdrop) backdrop.classList.add("is-open");
     document.body.style.overflow = "hidden";
     toggle.setAttribute("aria-expanded", "true");
+    menu.removeAttribute("aria-hidden");
+    menu.removeAttribute("inert");
     var firstLink = menu.querySelector("a");
     if (firstLink) firstLink.focus();
   }
@@ -35,14 +39,18 @@
   function closeMenu() {
     if (!menu) return;
     menu.classList.remove("is-open");
+    if (backdrop) backdrop.classList.remove("is-open");
     document.body.style.overflow = "";
     toggle.setAttribute("aria-expanded", "false");
+    menu.setAttribute("aria-hidden", "true");
+    menu.setAttribute("inert", "");
     toggle.focus();
   }
 
   if (toggle && menu) {
     toggle.addEventListener("click", openMenu);
     if (closeBtn) closeBtn.addEventListener("click", closeMenu);
+    if (backdrop) backdrop.addEventListener("click", closeMenu);
     menu.querySelectorAll("a").forEach(function (link) {
       link.addEventListener("click", closeMenu);
     });

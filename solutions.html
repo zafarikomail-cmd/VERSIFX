@@ -115,20 +115,23 @@
     </nav>
     <div class="nav-actions">
       <a href="contact.html" class="btn btn-primary">Let's Talk <span class="btn-arrow">→</span></a>
-      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="nav-toggle-lines" aria-hidden="true"><span></span><span></span></span>
+        <span class="nav-toggle-label">Menu</span>
       </button>
     </div>
   </div>
 </header>
 
-<div class="mobile-menu" aria-hidden="true">
+<div class="mobile-menu-backdrop"></div>
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true" inert>
   <div class="mobile-menu-top">
-    <img src="assets/logo/versifx-mark-reverse.png" alt="VERSIFX" style="height:28px;">
+    <img src="assets/logo/versifx-mark-transparent.png" alt="VERSIFX" style="height:24px;">
     <button class="mobile-menu-close" aria-label="Close menu">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" width="20" height="20"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
     </button>
   </div>
+  <span class="eyebrow" style="margin-top:var(--space-lg); display:block;">Navigate</span>
   <nav class="mobile-menu-links" aria-label="Mobile">
     <a href="solutions.html">Solutions</a>
     <a href="industries.html">Industries</a>
