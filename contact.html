@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — VERSIFX</title>
+<meta name="description" content="Tell us where you are today, what isn't working, and where you want to go. Start a conversation with VERSIFX.">
+<link rel="canonical" href="https://www.versifx.com/contact.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Contact — VERSIFX">
+<meta property="og:description" content="Tell us where you are today, what isn't working, and where you want to go.">
+<meta property="og:image" content="assets/logo/versifx-logo-primary.png">
+<link rel="icon" href="assets/logo/favicon-512.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/global.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="VERSIFX home">
+      <img src="assets/logo/versifx-logo-transparent.png" alt="VERSIFX">
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="solutions.html">Solutions</a>
+      <a href="industries.html">Industries</a>
+      <a href="work.html">Work</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" aria-current="page">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="contact.html" class="btn btn-primary">Let's Talk <span class="btn-arrow">→</span></a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" aria-hidden="true">
+  <div class="mobile-menu-top">
+    <img src="assets/logo/versifx-mark-reverse.png" alt="VERSIFX" style="height:28px;">
+    <button class="mobile-menu-close" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
+    </button>
+  </div>
+  <nav class="mobile-menu-links" aria-label="Mobile">
+    <a href="solutions.html">Solutions</a>
+    <a href="industries.html">Industries</a>
+    <a href="work.html">Work</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="mobile-menu-foot">hello@versifx.com</div>
+</div>
+
+<main id="main">
+
+  <section class="section section--light">
+    <div class="container">
+      <div class="grid contact-grid">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h1 class="h1" style="margin-top:1rem; max-width:12ch;">Let's talk about your business.</h1>
+          <p class="lede" style="margin-top:1.5rem; font-size:var(--fs-body-lg);">Tell us where you are today, what isn't working, and where you want to go.</p>
+
+          <div style="margin-top:var(--space-lg); padding-top:var(--space-md); border-top:var(--border-thin);">
+            <h4>Email</h4>
+            <p class="lede" style="margin-top:0.4rem;"><a href="mailto:hello@versifx.com" style="color:var(--color-navy); text-decoration:underline; text-decoration-color:var(--color-gold);">hello@versifx.com</a></p>
+          </div>
+        </div>
+
+        <form id="contact-form" novalidate>
+          <div class="form-row form-row--split">
+            <div class="field">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="business">Business</label>
+              <input type="text" id="business" name="business" autocomplete="organization">
+            </div>
+          </div>
+          <div class="form-row form-row--split">
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" autocomplete="email" required>
+            </div>
+            <div class="field">
+              <label for="website">Website</label>
+              <input type="url" id="website" name="website" autocomplete="url" placeholder="If you have one">
+            </div>
+          </div>
+          <div class="field">
+            <label for="help">What can we help with?</label>
+            <select id="help" name="help">
+              <option value="presence">Presence — website, branding, visibility</option>
+              <option value="growth">Growth — leads, conversion, strategy</option>
+              <option value="systems">Systems — automation, software, integrations</option>
+              <option value="not-sure">Not sure yet</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="details">Tell us about your business</label>
+            <textarea id="details" name="details" rows="5"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Start the Conversation <span class="btn-arrow">→</span></button>
+          <p class="form-status" role="status" hidden style="margin-top:1rem; font-size:var(--fs-sm); color:var(--text-muted);"></p>
+          <p class="form-note">This form isn't connected to a live inbox yet. We'll wire it up to a real backend before launch — for now, email us directly.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-top">
+    <div class="footer-brand">
+      <img src="assets/logo/versifx-logo-reverse.png" alt="VERSIFX">
+      <p class="footer-tagline">Build Better. Grow Further.</p>
+    </div>
+    <div>
+      <div class="footer-heading">Navigate</div>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="solutions.html">Solutions</a>
+        <a href="industries.html">Industries</a>
+        <a href="work.html">Work</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+    <div>
+      <div class="footer-heading">Contact</div>
+      <div class="footer-links">
+        <a href="mailto:hello@versifx.com">hello@versifx.com</a>
+      </div>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© <span data-year>2026</span> VERSIFX. All rights reserved.</span>
+    <div class="footer-social">
+      <span aria-hidden="true">LinkedIn</span>
+      <span aria-hidden="true">Instagram</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
