@@ -3,37 +3,19 @@
    ========================================================= */
 
 /* ---------------------------------------------------------
-   SELF-HOSTED TYPE
-   Variable fonts, self-hosted to avoid a third-party font CDN
-   dependency (see README for source/license).
+   TYPE
+   Cormorant Garamond + Manrope load via the Google Fonts
+   <link> already placed in the <head> of every page.
+
+   NOTE: this file previously declared local @font-face rules
+   pointing at assets/fonts/*.woff2, but those files were never
+   added to the repo (404) — and because those rules were
+   declared AFTER the Google Fonts <link>, they silently won
+   the font match and broke both typefaces sitewide (falling
+   back to Times New Roman / system sans). Removed until real
+   self-hosted font files are added — see README "Before going
+   live" checklist.
    --------------------------------------------------------- */
-
-@font-face {
-  font-family: "Cormorant Garamond";
-  src: url("../assets/fonts/CormorantGaramond-Variable.woff2") format("woff2-variations"),
-       url("../assets/fonts/CormorantGaramond-Variable.woff2") format("woff2");
-  font-weight: 300 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Cormorant Garamond";
-  src: url("../assets/fonts/CormorantGaramond-Italic-Variable.woff2") format("woff2-variations"),
-       url("../assets/fonts/CormorantGaramond-Italic-Variable.woff2") format("woff2");
-  font-weight: 300 700;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Manrope";
-  src: url("../assets/fonts/Manrope-Variable.woff2") format("woff2-variations"),
-       url("../assets/fonts/Manrope-Variable.woff2") format("woff2");
-  font-weight: 200 800;
-  font-style: normal;
-  font-display: swap;
-}
 
 :root {
   /* ---- Brand color system ---- */
