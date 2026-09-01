@@ -16,6 +16,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/global.css">
 <link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/mockup.css">
 <link rel="stylesheet" href="css/responsive.css">
 <script type="application/ld+json">
 {
@@ -377,14 +378,31 @@
         <a href="work.html" class="btn btn-secondary">View All Work <span class="btn-arrow">→</span></a>
       </div>
       <div class="grid grid-3">
-        <article class="work-card">
-          <div class="work-card-media"><span class="badge badge--concept">Concept Project</span></div>
+        <a href="work/dental-clinic.html" class="work-card" style="display:flex; flex-direction:column;">
+          <div class="work-card-preview device-frame">
+            <div class="arc">
+              <div class="arc-nav">
+                <span class="arc-logo">ARCSTONE <em>DENTAL</em></span>
+                <span class="arc-nav-cta">Book Visit</span>
+              </div>
+              <div class="arc-hero" style="grid-template-columns:1fr;">
+                <div>
+                  <span class="arc-hero-eyebrow">Modern Family Dentistry</span>
+                  <h3>A calmer way<br>to book your visit.</h3>
+                  <div class="arc-hero-actions">
+                    <span class="arc-btn arc-btn--fill">Book Appointment</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <span class="badge badge--concept">Concept Project</span>
+          </div>
           <div class="work-card-body">
             <span class="work-card-tag">Healthcare</span>
             <h4 class="font-display" style="font-size:1.3rem; font-weight:500;">Dental Clinic Digital Transformation</h4>
             <p class="lede" style="font-size:var(--fs-sm);">Rebuilding presence, booking, and mobile experience for a healthcare provider.</p>
           </div>
-        </article>
+        </a>
         <article class="work-card">
           <div class="work-card-media"><span class="badge badge--concept">Concept Project</span></div>
           <div class="work-card-body">

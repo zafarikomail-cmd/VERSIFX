@@ -39,6 +39,21 @@
   .work-detail-grid { grid-template-columns: 1fr; }
   .contact-grid { grid-template-columns: 1fr; }
   .work-head { flex-direction: column; align-items: flex-start; }
+
+  .journey-strip { grid-template-columns: 1fr; row-gap: var(--space-md); }
+  .journey-step::before { display: none; }
+  .journey-step { text-align: left; padding-left: 3.5rem; }
+  .journey-step-num { position: absolute; margin-inline: 0; }
+  .journey-step-label,
+  .journey-step-desc { padding-left: 0; }
+
+  .arc-hero { grid-template-columns: 1fr; }
+  .arc-hero-art { order: -1; }
+  .arc-about { grid-template-columns: 1fr; }
+  .arc-contact { grid-template-columns: 1fr; }
+  .arc-service-grid { grid-template-columns: 1fr; }
+
+  .challenge-grid { grid-template-columns: 1fr; }
 }
 
 /* ---------- Mobile ---------- */
@@ -78,6 +93,12 @@
   .work-card-media { padding: var(--space-xs); }
 
   .mobile-menu-links a { font-size: 1.6rem; }
+
+  .method-steps--signature { padding-left: 2.25rem; }
+  .method-steps--signature .method-step-num { left: -2.25rem; width: 28px; height: 28px; font-size: 0.95rem; }
+
+  .journey-step { padding-left: 3rem; }
+  .journey-step-num { width: 26px; height: 26px; font-size: 0.85rem; }
 }
 
 /* ---------- Very small ---------- */
