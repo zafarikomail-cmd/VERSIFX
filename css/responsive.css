@@ -75,8 +75,6 @@
 
   .pillar-services { grid-template-columns: 1fr; }
 
-  .industry-card { flex-direction: row; }
-
   .work-card-media { padding: var(--space-xs); }
 
   .mobile-menu-links a { font-size: 1.6rem; }

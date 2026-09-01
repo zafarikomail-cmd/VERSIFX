@@ -200,14 +200,14 @@
   letter-spacing: 0.09em;
   text-transform: uppercase;
   padding: 0.35rem 0.7rem;
-  border: 1px solid var(--color-gold);
+  border: 1px solid var(--color-gold-ink);
   color: var(--color-navy);
   border-radius: var(--radius-sm);
 }
 
 .badge--concept {
-  border-color: var(--color-gold);
-  color: var(--color-gold);
+  border-color: var(--color-gold-ink);
+  color: var(--color-gold-ink);
   background: rgba(183, 154, 91, 0.08);
 }
 
@@ -222,12 +222,12 @@
   transition: border-color var(--duration-fast) var(--ease-standard);
 }
 
-.card:hover { border-color: var(--color-gold); }
+.card:hover { border-color: var(--color-gold-ink); }
 
 .card-index {
   font-family: var(--font-display);
   font-size: 1.6rem;
-  color: var(--color-gold);
+  color: var(--color-gold-ink);
   margin-bottom: var(--space-sm);
 }
 
@@ -251,20 +251,32 @@
 }
 
 .industry-card {
-  padding: var(--space-md);
+  padding: var(--space-lg) var(--space-md);
   border: var(--border-thin);
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: var(--space-sm);
   transition: background var(--duration-fast) var(--ease-standard);
 }
 
 .industry-card:hover { background: rgba(183, 154, 91, 0.06); }
 
-.industry-card-name { font-family: var(--font-display); font-size: 1.35rem; }
+.industry-card-mark {
+  width: 12px;
+  height: 12px;
+  border: 1.5px solid var(--color-gold);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+  transition: background var(--duration-fast) var(--ease-standard);
+}
 
-.industry-card-arrow { color: var(--color-gold); }
+.industry-card:hover .industry-card-mark { background: var(--color-gold); }
+
+.industry-card-name { font-family: var(--font-display); font-size: 1.6rem; flex: 1; }
+
+.industry-card-arrow { color: var(--color-gold); transition: transform var(--duration-fast) var(--ease-standard); }
+
+.industry-card:hover .industry-card-arrow { transform: translateX(3px); }
 
 .work-head {
   display: flex;
@@ -301,16 +313,49 @@
   flex-direction: column;
 }
 
+/* Placeholder imagery treatment — stands in for photography that has not
+   been shot yet. Built from the brand's own V/X geometry (mark watermark +
+   diamond corner accent) rather than a flat block, so an empty slot still
+   reads as intentional. Swap for a real photograph by replacing this
+   background with an <img>; see README "Imagery placeholder & photography
+   guidelines" for exact aspect ratio, crop, and treatment rules per slot. */
 .work-card-media {
   aspect-ratio: 16 / 10;
-  background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-navy-soft) 60%, var(--color-charcoal) 100%);
+  background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-navy-soft) 55%, var(--color-charcoal) 100%);
   position: relative;
+  overflow: hidden;
   display: flex;
   align-items: flex-end;
   padding: var(--space-sm);
 }
 
+.work-card-media::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../assets/logo/versifx-mark-reverse.png");
+  background-repeat: no-repeat;
+  background-position: 112% 60%;
+  background-size: 58% auto;
+  opacity: 0.16;
+  z-index: 0;
+}
+
+.work-card-media::after {
+  content: "";
+  position: absolute;
+  left: var(--space-sm);
+  top: var(--space-sm);
+  width: 12px;
+  height: 12px;
+  border: 1.5px solid rgba(203, 180, 131, 0.55);
+  transform: rotate(45deg);
+  z-index: 0;
+}
+
 .work-card-media .badge--concept {
+  position: relative;
+  z-index: 1;
   background: rgba(247, 244, 236, 0.95);
 }
 
@@ -375,7 +420,7 @@
   display: grid;
   grid-template-columns: 90px 1fr;
   gap: var(--space-md);
-  padding-block: var(--space-sm);
+  padding-block: var(--space-md);
   border-top: var(--border-thin);
   align-items: baseline;
 }
@@ -391,6 +436,8 @@
 .method-step-title { font-family: var(--font-display); font-size: var(--fs-md); margin-bottom: 0.3rem; }
 
 .method-step-desc { color: var(--text-muted-inverse); font-size: var(--fs-sm); max-width: 46ch; }
+
+.section--light .method-step-desc { color: var(--text-muted); }
 
 /* Principles (why versifx) */
 .principle {
@@ -409,7 +456,7 @@
 .cta-band {
   background: var(--color-navy);
   color: var(--color-ivory);
-  padding-block: var(--space-xl);
+  padding-block: var(--space-lg);
   text-align: center;
 }
 

@@ -2,6 +2,39 @@
    VERSIFX — GLOBAL DESIGN SYSTEM
    ========================================================= */
 
+/* ---------------------------------------------------------
+   SELF-HOSTED TYPE
+   Variable fonts, self-hosted to avoid a third-party font CDN
+   dependency (see README for source/license).
+   --------------------------------------------------------- */
+
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("../assets/fonts/CormorantGaramond-Variable.woff2") format("woff2-variations"),
+       url("../assets/fonts/CormorantGaramond-Variable.woff2") format("woff2");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("../assets/fonts/CormorantGaramond-Italic-Variable.woff2") format("woff2-variations"),
+       url("../assets/fonts/CormorantGaramond-Italic-Variable.woff2") format("woff2");
+  font-weight: 300 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: url("../assets/fonts/Manrope-Variable.woff2") format("woff2-variations"),
+       url("../assets/fonts/Manrope-Variable.woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* ---- Brand color system ---- */
   --color-navy: #101A2B;
@@ -11,6 +44,11 @@
   --color-stone: #DDD8CC;
   --color-gold: #B79A5B;
   --color-gold-soft: #CBB483;
+  /* Deeper gold for text/icons/UI accents on light backgrounds — the base
+     --color-gold reads clearly on navy (6.5:1) but falls to ~2.5:1 on
+     ivory/stone, below WCAG AA. Use this any time gold sits on a light
+     section; --color-gold remains correct for dark sections. */
+  --color-gold-ink: #786335;
   --color-white: #FFFFFF;
 
   /* ---- Functional aliases ---- */
@@ -116,8 +154,15 @@ button:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
-  outline: 2px solid var(--color-gold);
+  outline: 2px solid var(--color-gold-ink);
   outline-offset: 3px;
+}
+
+.section--dark :focus-visible,
+.footer :focus-visible,
+.mobile-menu :focus-visible,
+.cta-band :focus-visible {
+  outline-color: var(--color-gold);
 }
 
 /* Skip link */
@@ -153,8 +198,10 @@ select:focus-visible {
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-gold);
+  color: var(--color-gold-ink);
 }
+
+.section--dark .eyebrow { color: var(--color-gold); }
 
 h1, .h1 {
   font-family: var(--font-display);
