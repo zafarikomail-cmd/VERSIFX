@@ -82,19 +82,137 @@
   var yearEl = document.querySelector("[data-year]");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  /* ---------- Contact form (frontend-only, no backend yet) ---------- */
+  /* ---------- Contact form (Web3Forms) ---------- */
   var form = document.querySelector("#contact-form");
   if (form) {
+    var WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
+
+    var submitBtn = form.querySelector("button[type='submit']");
+    var btnLabel = submitBtn ? submitBtn.querySelector(".btn-label") : null;
+    var statusEl = form.querySelector(".form-status");
+    var nameInput = form.querySelector("#name");
+    var emailInput = form.querySelector("#email");
+
+    var defaultBtnText = btnLabel ? btnLabel.textContent : (submitBtn ? submitBtn.textContent : "Start the Conversation");
+
+    function setFieldError(input, message) {
+      if (!input) return;
+      var field = input.closest(".field");
+      var errorEl = field ? field.querySelector(".field-error") : null;
+      if (message) {
+        if (field) field.classList.add("field--invalid");
+        if (errorEl) {
+          errorEl.textContent = message;
+          errorEl.hidden = false;
+        }
+        input.setAttribute("aria-invalid", "true");
+      } else {
+        if (field) field.classList.remove("field--invalid");
+        if (errorEl) {
+          errorEl.textContent = "";
+          errorEl.hidden = true;
+        }
+        input.removeAttribute("aria-invalid");
+      }
+    }
+
+    function isValidEmail(value) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    }
+
+    function validateForm() {
+      var valid = true;
+
+      if (!nameInput.value.trim()) {
+        setFieldError(nameInput, "Please enter your name.");
+        valid = false;
+      } else {
+        setFieldError(nameInput, null);
+      }
+
+      var emailValue = emailInput.value.trim();
+      if (!emailValue) {
+        setFieldError(emailInput, "Please enter your email.");
+        valid = false;
+      } else if (!isValidEmail(emailValue)) {
+        setFieldError(emailInput, "Please enter a valid email address.");
+        valid = false;
+      } else {
+        setFieldError(emailInput, null);
+      }
+
+      return valid;
+    }
+
+    function showStatus(message, type) {
+      if (!statusEl) return;
+      statusEl.textContent = message;
+      statusEl.hidden = false;
+      statusEl.classList.remove("is-success", "is-error");
+      if (type) statusEl.classList.add(type);
+    }
+
+    function setLoading(isLoading) {
+      if (!submitBtn) return;
+      submitBtn.disabled = isLoading;
+      if (btnLabel) {
+        btnLabel.textContent = isLoading ? "Sending…" : defaultBtnText;
+      } else {
+        submitBtn.textContent = isLoading ? "Sending…" : defaultBtnText;
+      }
+    }
+
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      // TODO: connect to a real form backend / email service.
-      // e.g. POST to a serverless endpoint, Formspree, or a CRM webhook.
-      var note = form.querySelector(".form-status");
-      if (note) {
-        note.textContent =
-          "Thanks — this form isn't connected to a live inbox yet. In the meantime, reach us directly at hello@versifx.com.";
-        note.hidden = false;
+
+      // Honeypot: if this hidden field has a value, silently drop the submission.
+      var honeypot = form.querySelector("[name='botcheck']");
+      if (honeypot && honeypot.checked) {
+        return;
       }
+
+      if (!validateForm()) {
+        showStatus("Please fix the highlighted fields and try again.", "is-error");
+        return;
+      }
+
+      var formData = new FormData(form);
+      var payload = Object.fromEntries(formData);
+      payload.subject = "New VERSIFX Contact — " + nameInput.value.trim();
+      payload.from_name = "VERSIFX Website";
+
+      setLoading(true);
+      showStatus("Sending…", "");
+
+      fetch(WEB3FORMS_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(payload)
+      })
+        .then(function (response) {
+          return response.json().then(function (data) {
+            return { ok: response.ok, data: data };
+          });
+        })
+        .then(function (result) {
+          if (result.ok && result.data && result.data.success) {
+            showStatus("Message sent successfully — we'll be in touch soon.", "is-success");
+            form.reset();
+            setFieldError(nameInput, null);
+            setFieldError(emailInput, null);
+          } else {
+            showStatus("Something went wrong. Please try again.", "is-error");
+          }
+        })
+        .catch(function () {
+          showStatus("Something went wrong. Please try again.", "is-error");
+        })
+        .finally(function () {
+          setLoading(false);
+        });
     });
   }
 })();

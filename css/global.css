@@ -35,6 +35,7 @@
      --color-gold remains correct for dark sections. */
   --color-gold-ink: #6E5A2F;
   --color-white: #FFFFFF;
+  --color-error: #9A3B3B;
 
   /* ---- Functional aliases ---- */
   --bg-page: var(--color-ivory);

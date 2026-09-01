@@ -146,10 +146,16 @@
         </div>
 
         <form id="contact-form" novalidate>
+          <!-- Web3Forms access key. Get your free key at https://web3forms.com and paste it here. -->
+          <input type="hidden" name="access_key" value="def9340c-831f-4c45-9a96-e77217645e0e">
+          <!-- Honeypot spam trap: real visitors never fill this in. -->
+          <input type="checkbox" name="botcheck" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+
           <div class="form-row form-row--split">
             <div class="field">
               <label for="name">Name</label>
-              <input type="text" id="name" name="name" autocomplete="name" required>
+              <input type="text" id="name" name="name" autocomplete="name" required aria-describedby="name-error">
+              <p class="field-error" id="name-error" hidden></p>
             </div>
             <div class="field">
               <label for="business">Business</label>
@@ -159,7 +165,8 @@
           <div class="form-row form-row--split">
             <div class="field">
               <label for="email">Email</label>
-              <input type="email" id="email" name="email" autocomplete="email" required>
+              <input type="email" id="email" name="email" autocomplete="email" required aria-describedby="email-error">
+              <p class="field-error" id="email-error" hidden></p>
             </div>
             <div class="field">
               <label for="website">Website</label>
@@ -179,9 +186,11 @@
             <label for="details">Tell us about your business</label>
             <textarea id="details" name="details" rows="5"></textarea>
           </div>
-          <button type="submit" class="btn btn-primary">Start the Conversation <span class="btn-arrow">→</span></button>
-          <p class="form-status" role="status" hidden style="margin-top:1rem; font-size:var(--fs-sm); color:var(--text-muted);"></p>
-          <p class="form-note">This form isn't connected to a live inbox yet. We'll wire it up to a real backend before launch — for now, email us directly.</p>
+          <button type="submit" class="btn btn-primary">
+            <span class="btn-label">Start the Conversation</span>
+            <span class="btn-arrow">→</span>
+          </button>
+          <p class="form-status" role="status" hidden style="margin-top:1rem; font-size:var(--fs-sm);"></p>
         </form>
       </div>
     </div>

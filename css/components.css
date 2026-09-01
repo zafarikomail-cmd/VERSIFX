@@ -685,6 +685,37 @@
 
 .form-note { font-size: var(--fs-xs); color: var(--text-muted); margin-top: var(--space-sm); }
 
+/* Honeypot: hidden from real visitors, still reachable by bots */
+.form-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Validation states */
+.field--invalid input,
+.field--invalid select,
+.field--invalid textarea {
+  border-bottom-color: var(--color-error, #9A3B3B);
+}
+
+.field-error {
+  font-size: var(--fs-xs);
+  color: var(--color-error, #9A3B3B);
+  margin: 0;
+}
+
+.form-status.is-success { color: var(--color-gold-ink); }
+.form-status.is-error { color: var(--color-error, #9A3B3B); }
+
+.btn[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 .contact-detail {
   display: flex;
   align-items: flex-start;
