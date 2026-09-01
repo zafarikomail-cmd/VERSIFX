@@ -572,6 +572,20 @@
 
 .form-note { font-size: var(--fs-xs); color: var(--text-muted); margin-top: var(--space-sm); }
 
+.contact-detail {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+}
+
+.contact-detail-icon {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  object-fit: contain;
+  margin-top: 0.15rem;
+}
+
 /* ---------------------------------------------------------
    FOOTER
    --------------------------------------------------------- */
